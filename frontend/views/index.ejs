@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><%= title %></title>
+<link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<main id="main">
+<%- include('partials/header') %>
+
+<% if (!spike) { %>
+  <p class="empty">
+    No spike artifact yet. Run <code>npm run spike</code> in <code>backend/</code> first.
+  </p>
+<% } else { %>
+
+<section>
+  <h2>Measured channels</h2>
+  <p class="meta">
+    SPHEREx <%= spike.release.toUpperCase() %> &middot;
+    brightest source in each detector &middot;
+    <%= spike.measured.length %> channels from <%= spike.discoveredMefs %> discovered images &middot;
+    <%= spike.generatedAt %>
+  </p>
+  <%- include('partials/spectrum-chart', { channels: spike.measured }) %>
+  <%- include('partials/channel-table', { channels: spike.measured }) %>
+</section>
+
+<section>
+  <h2>Provenance</h2>
+  <p>Every row above came from a real IRSA-hosted SPHEREx Level 2 spectral image.</p>
+  <ul class="sources">
+    <% spike.measured.forEach(function (c) { %>
+      <li>
+        <span class="lam">&lambda; = <%= c.lambdaMicron.toFixed(4) %> &micro;m</span>
+        <a href="<%= c.sourceUri %>"><%= c.sourceUri.split('/').pop() %></a>
+        <span class="muted">observed <%= c.dateObs %></span>
+      </li>
+    <% }); %>
+  </ul>
+</section>
+
+<% } %>
+</main>
+</body>
+</html>

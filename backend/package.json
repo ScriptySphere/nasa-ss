@@ -1,0 +1,21 @@
+{
+    "name": "ScriptySphere",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "engines": {
+        "node": ">=22.6.0"
+    },
+    "scripts": {
+        "spike": "node src/scripts/spike.ts",
+        "probe": "node src/scripts/probe-file.ts",
+        "channels": "node src/scripts/derive-channels.ts",
+        "extract": "node src/scripts/extract-sources.ts",
+        "test": "node --test test/",
+        "typecheck": "tsc --noEmit"
+    },
+    "devDependencies": {
+        "@types/node": "^24.0.0",
+        "typescript": "^5.9.0"
+    }
+}

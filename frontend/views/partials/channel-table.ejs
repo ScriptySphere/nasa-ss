@@ -1,0 +1,27 @@
+<table>
+  <caption>Channel photometry (also serves as the accessible alternative to the chart)</caption>
+  <thead>
+    <tr>
+      <th scope="col">&lambda; (&micro;m)</th>
+      <th scope="col">&Delta;&lambda; (&micro;m)</th>
+      <th scope="col">R</th>
+      <th scope="col">Detector</th>
+      <th scope="col">Flux (mJy)</th>
+      <th scope="col">Uncert (mJy)</th>
+      <th scope="col">SNR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% channels.forEach(function (c) { %>
+      <tr>
+        <td><%= c.lambdaMicron.toFixed(4) %></td>
+        <td><%= c.bandwidthMicron.toFixed(4) %></td>
+        <td><%= c.resolvingPower.toFixed(0) %></td>
+        <td>D<%= c.detector %></td>
+        <td><%= c.fluxMilliJy.toFixed(4) %></td>
+        <td><%= c.fluxErrMilliJy.toFixed(4) %></td>
+        <td><%= c.snr.toFixed(0) %></td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>

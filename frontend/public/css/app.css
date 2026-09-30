@@ -1,0 +1,107 @@
+:root {
+    color-scheme: dark;
+}
+body {
+    margin: 0;
+    background: #05070d;
+    color: #e8edf7;
+    font:
+        16px/1.55 system-ui,
+        sans-serif;
+}
+main {
+    max-width: 52rem;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+}
+h1 {
+    font-size: 1.5rem;
+    margin: 0 0 0.25rem;
+}
+h2 {
+    font-size: 1.05rem;
+    margin: 2.5rem 0 0.5rem;
+}
+.sub,
+.meta,
+.muted,
+figcaption {
+    color: #8895ad;
+    font-size: 0.85rem;
+}
+.meta {
+    margin-top: 0;
+}
+code {
+    background: #131926;
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+    font-size: 0.85em;
+}
+.empty {
+    padding: 2rem 0;
+    color: #8895ad;
+}
+svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+svg line {
+    stroke: #8895ad;
+    stroke-width: 1;
+}
+svg text {
+    fill: #8895ad;
+    font-size: 11px;
+}
+svg polyline.series {
+    fill: none;
+    stroke: #6ee7ff;
+    stroke-width: 2;
+}
+svg circle {
+    fill: #ff9d6e;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+}
+caption {
+    text-align: left;
+    color: #8895ad;
+    font-size: 0.8rem;
+    padding-bottom: 0.4rem;
+}
+th,
+td {
+    text-align: right;
+    padding: 0.35rem 0.5rem;
+    border-bottom: 1px solid #1e2739;
+}
+th:first-child,
+td:first-child {
+    text-align: left;
+}
+td {
+    font-variant-numeric: tabular-nums;
+}
+ul.sources {
+    list-style: none;
+    padding: 0;
+    font-size: 0.8rem;
+}
+ul.sources li {
+    padding: 0.3rem 0;
+    border-bottom: 1px solid #1e2739;
+}
+ul.sources .lam {
+    display: inline-block;
+    min-width: 9rem;
+    font-variant-numeric: tabular-nums;
+}
+a {
+    color: #6ee7ff;
+}

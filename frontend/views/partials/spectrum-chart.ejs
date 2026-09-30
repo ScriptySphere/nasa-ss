@@ -1,0 +1,33 @@
+<%
+  const W = 720, H = 300, PAD = 44;
+  const xs = channels.map(c => c.lambdaMicron);
+  const ys = channels.map(c => c.fluxMilliJy);
+  const xMin = Math.min(...xs), xMax = Math.max(...xs);
+  const yMax = Math.max(...ys) * 1.15;
+  const sx = v => PAD + (xMax === xMin ? 0 : (v - xMin) / (xMax - xMin)) * (W - PAD * 2);
+  const sy = v => H - PAD - (yMax === 0 ? 0 : v / yMax) * (H - PAD * 2);
+  const pts = channels.map(c => sx(c.lambdaMicron).toFixed(1) + ',' + sy(c.fluxMilliJy).toFixed(1)).join(' ');
+  const ticks = [];
+  for (let i = 0; i <= 4; i++) ticks.push(xMin + (xMax - xMin) * (i / 4));
+%>
+<figure>
+  <svg viewBox="0 0 <%= W %> <%= H %>" role="img"
+       aria-label="Flux density versus wavelength for <%= channels.length %> measured channels">
+    <line x1="<%= PAD %>" y1="<%= H - PAD %>" x2="<%= W - PAD %>" y2="<%= H - PAD %>" />
+    <line x1="<%= PAD %>" y1="<%= PAD %>" x2="<%= PAD %>" y2="<%= H - PAD %>" />
+    <% ticks.forEach(function (tick) { %>
+      <text x="<%= sx(tick).toFixed(1) %>" y="<%= H - PAD + 18 %>" text-anchor="middle"><%= tick.toFixed(2) %></text>
+    <% }); %>
+    <text x="<%= W / 2 %>" y="<%= H - 6 %>" text-anchor="middle">wavelength (&micro;m)</text>
+    <text x="12" y="<%= H / 2 %>" text-anchor="middle" transform="rotate(-90 12 <%= H / 2 %>)">flux (mJy)</text>
+    <% if (channels.length > 1) { %>
+      <polyline class="series" points="<%= pts %>" />
+    <% } %>
+    <% channels.forEach(function (c) { %>
+      <circle cx="<%= sx(c.lambdaMicron).toFixed(1) %>" cy="<%= sy(c.fluxMilliJy).toFixed(1) %>" r="4">
+        <title>&lambda; <%= c.lambdaMicron.toFixed(4) %> &micro;m &middot; <%= c.fluxMilliJy.toFixed(4) %> mJy &middot; SNR <%= c.snr.toFixed(0) %></title>
+      </circle>
+    <% }); %>
+  </svg>
+  <figcaption>Flux density versus central wavelength. Point labels carry the measured values.</figcaption>
+</figure>

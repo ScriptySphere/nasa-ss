@@ -1,0 +1,19 @@
+{
+    "name": "ScriptySphere",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "workspaces": [
+        "backend",
+        "frontend"
+    ],
+    "scripts": {
+        "spike": "npm run spike --workspace backend",
+        "start": "npm start --workspace frontend",
+        "dev:frontend": "npm run dev --workspace frontend",
+        "typecheck": "npm run typecheck --workspace backend"
+    },
+    "engines": {
+        "node": ">=22.6.0"
+    }
+}
